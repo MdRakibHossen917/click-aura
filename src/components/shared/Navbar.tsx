@@ -16,7 +16,7 @@ const menuItems = [
 
 const AnimatedText = ({ text }: { text: string }) => {
   return (
-    <div className="[perspective:120px] [perspective-origin:bottom]">
+    <div className="perspective-[120px]">
       <div>
         <div className="relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase sm:text-5xl md:text-5xl text-white leading-[0.95] group">
           <div className="flex">
@@ -69,16 +69,16 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300   ${
         showBlur
-          ? 'backdrop-blur-sm bg-zinc-900/30 border-b border-zinc-800/30'
+          ? 'backdrop-blur-sm/10 bg-zinc-900/10  '
           : 'bg-transparent'
       }`}
     >
-      <nav className="flex justify-between items-center py-10 container mx-auto relative">
+      <nav className="w-11/12 mx-auto flex justify-between items-center py-4 md:py-6 relative h-20 md:h-24">
         {/* Logo */}
-        <Link href="/">
-          <div className="w-[60px] md:w-[100px] h-auto">
+        <Link href="/" className="shrink-0 flex items-center h-full">
+          <div className="w-12 md:w-16 h-auto">
             <Image
               src="/logo.png"
               alt="Logo"
@@ -90,15 +90,18 @@ const Navbar = () => {
           </div>
         </Link>
 
+        {/* Spacer */}
+        <div className="flex-1" />
+
         {/* Right menu container */}
-        <div className="relative">
+        <div className="relative shrink-0 flex items-center h-full">
           {/* Overlay Menu */}
           {menuOpen && (
-            <div className="fixed z-50 right-[50px] top-[40px]">
-              <div className="bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 relative w-[480px] h-[650px] -top-[25px] -right-[25px]">
+            <div className="fixed z-50 right-12 top-10">
+              <div className="bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 relative w-120 h-162.5 -top-6 -right-6">
                 <div className="flex flex-col justify-between h-full p-[60px_20px_30px_20px] md:p-[100px_40px_50px_40px] box-border">
                   {/* Menu links */}
-                  <div className="flex flex-col gap-[20px] md:gap-[10px] uppercase">
+                  <div className="flex flex-col gap-5 md:gap-2.5 uppercase">
                     {menuItems.map(item => (
                       <Link
                         key={item.name}
@@ -132,7 +135,7 @@ const Navbar = () => {
           {/* Menu / Close Button */}
           <div
             onClick={() => setMenuOpen(!menuOpen)}
-            className="absolute top-0 right-0 w-[80px] md:w-[100px] h-[32px] md:h-[40px] cursor-pointer overflow-hidden border border-zinc-800/50 z-50"
+            className="w-20 md:w-28 h-10 md:h-12 cursor-pointer overflow-hidden border border-zinc-700 hover:border-zinc-500 transition-colors z-50"
           >
             <div
               className="relative w-full h-full transition-all duration-300"
