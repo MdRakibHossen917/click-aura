@@ -54,11 +54,15 @@ function Counter({ end }: { end: number }) {
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('Albums')
+  const [packageTab, setPackageTab] = useState('Packages')
+  const [customCategory, setCustomCategory] = useState('Commercial')
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [drawerY, setDrawerY] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState(0)
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
+  const [scrollY, setScrollY] = useState(0)
+  const [copied, setCopied] = useState(false)
   const drawerRef = useRef<HTMLDivElement>(null)
   const albumRef = useRef<HTMLDivElement>(null)
 
@@ -90,6 +94,15 @@ export default function Home() {
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [activeTab])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   
   return (
     <div className="relative w-full min-h-screen bg-zinc-50 dark:bg-black overflow-hidden" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
@@ -157,6 +170,19 @@ export default function Home() {
         .animate-marquee {
           animation: marquee 25s linear infinite;
         }
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-slide-right {
+          animation: slideInRight 0.6s ease-out forwards;
+        }
       `}</style>
 
       {/* Cloudinary Video Background */}
@@ -200,6 +226,8 @@ export default function Home() {
                   LET&apos;S CREATE SOMETHING UNFORGETTABLE TOGETHER!
                 </h2>
               </div>
+
+              
 
               <div className="animate-fade-scale" style={{ animationDelay: '0.4s' }}>
                 <Link href="/work" className="inline-block group">
@@ -382,51 +410,69 @@ export default function Home() {
             {activeTab === 'Albums' && (
               <div className="animate-fade-scale">
                 <div className="min-h-[35vh] md:min-h-[45vh]">
-                  <div className="album-image-stack flex w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] justify-center relative mt-[4vh] will-change-transform mx-auto md:ml-[15vw]">
-                    <div className="group absolute border-2 md:border-4 border-white h-[262px] w-[210px] sm:h-[300px] sm:w-[240px] md:h-[337px] md:w-[270px] lg:h-[375px] lg:w-[300px] z-[1] overflow-hidden cursor-pointer">
-                      <img alt="Laborum Magnam" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://cdn.bengalart.click/files/1Ty2HW0RCvHRrudZTas36EOCeE7YSOj2r" />
-                      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white font-medium text-sm album-label">Laborum Magnam</h3>
-                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Officiis iusto aperi</p>
+                  <div className="album-image-stack flex w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] justify-center relative mt-[4vh] will-change-transform mx-auto md:ml-[15vw]">
+                    <div className="group absolute border-2 md:border-4 border-white h-[235px] w-[188px] sm:h-[280px] sm:w-[224px] md:h-[337px] md:w-[270px] lg:h-[375px] lg:w-[300px] z-[1] overflow-hidden cursor-pointer">
+                      <img alt="Bird Photography" loading="lazy" decoding="async" className="w-full h-full object-cover object-center" src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs sm:text-sm album-label">Bird Photography</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Nature's beauty in flight</p>
                       </div>
                     </div>
-                    <div className="group album-right absolute border-2 md:border-4 border-white h-[157px] w-[131px] sm:h-[180px] sm:w-[150px] md:h-[202px] md:w-[168px] lg:h-[225px] lg:w-[187px] z-[2] -right-[20%] bottom-[10%] transition-transform duration-700 overflow-hidden cursor-pointer">
-                      <img alt="Reprehenderit vel ut" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://cdn.bengalart.click/files/1dA1KcWeAggeIIUuH3O02l2I69MCokJg-" />
-                      <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white font-medium text-xs album-label">Reprehenderit vel ut</h3>
-                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Quo iusto doloremque</p>
+                    <div className="group album-right absolute border-2 md:border-4 border-white h-[141px] w-[118px] sm:h-[168px] sm:w-[140px] md:h-[202px] md:w-[168px] lg:h-[225px] lg:w-[187px] z-[2] -right-[18%] sm:-right-[20%] bottom-[10%] transition-transform duration-700 overflow-hidden cursor-pointer">
+                      <img alt="Wild Birds" loading="lazy" decoding="async" className="w-full h-full object-cover object-right" src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs album-label">Wild Birds</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Right side view</p>
                       </div>
                     </div>
-                    <div className="group album-left absolute border-2 md:border-4 border-white h-[105px] w-[87px] sm:h-[120px] sm:w-[100px] md:h-[135px] md:w-[112px] lg:h-[150px] lg:w-[124px] z-[3] -left-[5%] bottom-[45%] transition-transform duration-700 overflow-hidden cursor-pointer">
-                      <img alt="Omnis accusamus" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://cdn.bengalart.click/files/12ueeC1QAVXiqA3wAN7c-gqTOC6j0mT_7" />
-                      <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white font-medium text-xs album-label">Omnis accusamus</h3>
-                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Saepius nostrud</p>
+                    <div className="group album-left absolute border-2 md:border-4 border-white h-[94px] w-[78px] sm:h-[112px] sm:w-[93px] md:h-[135px] md:w-[112px] lg:h-[150px] lg:w-[124px] z-[3] -left-[3%] sm:-left-[5%] bottom-[45%] transition-transform duration-700 overflow-hidden cursor-pointer">
+                      <img alt="Exotic Birds" loading="lazy" decoding="async" className="w-full h-full object-cover object-left" src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs album-label">Exotic Birds</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Left side view</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="min-h-[35vh] md:min-h-[45vh]">
-                  <div className="album-image-stack flex w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] justify-center relative mt-[4vh] will-change-transform mx-auto md:ml-[45vw]">
-                    <div className="group absolute border-2 md:border-4 border-white h-[262px] w-[210px] sm:h-[300px] sm:w-[240px] md:h-[337px] md:w-[270px] lg:h-[375px] lg:w-[300px] z-[1] overflow-hidden cursor-pointer">
-                      <img alt="Reprehenderit vel ut" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://cdn.bengalart.click/files/1CobjT-mPtqzSDnqH4iONGON-0aAsZBTN" />
-                      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white font-medium text-sm album-label">Reprehenderit vel ut</h3>
-                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Quo iusto doloremque</p>
+                  <div className="album-image-stack flex w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] justify-center relative mt-[4vh] will-change-transform mx-auto md:ml-[45vw]">
+                    <div className="group absolute border-2 md:border-4 border-white h-[235px] w-[188px] sm:h-[280px] sm:w-[224px] md:h-[337px] md:w-[270px] lg:h-[375px] lg:w-[300px] z-[1] overflow-hidden cursor-pointer">
+                      <img alt="Professional Portrait" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs sm:text-sm album-label">Professional Portrait</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Capturing personalities</p>
                       </div>
                     </div>
-                    <div className="group album-right absolute border-2 md:border-4 border-white h-[157px] w-[131px] sm:h-[180px] sm:w-[150px] md:h-[202px] md:w-[168px] lg:h-[225px] lg:w-[187px] z-[2] -right-[20%] bottom-[10%] transition-transform duration-700 overflow-hidden cursor-pointer">
-                      <img alt="Cupiditate labore qu" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://cdn.bengalart.click/files/1AvonIOSttaIH_Q5IGkwJORbPEhLwaCDs" />
-                      <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white font-medium text-xs album-label">Cupiditate labore qu</h3>
-                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Omnis accusamus</p>
+                    <div className="group album-left absolute border-2 md:border-4 border-white h-[94px] w-[78px] sm:h-[112px] sm:w-[93px] md:h-[135px] md:w-[112px] lg:h-[180px] lg:w-[145px] z-[3] -left-[8%] sm:-left-[10%] bottom-[35%] transition-transform duration-700 overflow-hidden cursor-pointer">
+                      <img alt="Portrait Face" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs album-label">Portrait Face</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Face close-up</p>
                       </div>
                     </div>
-                    <div className="group album-left absolute border-2 md:border-4 border-white h-[105px] w-[87px] sm:h-[120px] sm:w-[100px] md:h-[135px] md:w-[112px] lg:h-[180px] lg:w-[145px] z-[3] -left-[10%] bottom-[35%] transition-transform duration-700 overflow-hidden cursor-pointer">
-                      <img alt="Ipsa aspernatur ear" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://cdn.bengalart.click/files/undefined" />
-                      <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white font-medium text-xs album-label">Ipsa aspernatur</h3>
-                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Earum voluptas</p>
+                  </div>
+                </div>
+                <div className="min-h-[35vh] md:min-h-[45vh]">
+                  <div className="album-image-stack flex w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] justify-center relative mt-[4vh] will-change-transform mx-auto md:ml-[20vw]">
+                    <div className="group absolute border-2 md:border-4 border-white h-[235px] w-[188px] sm:h-[280px] sm:w-[224px] md:h-[337px] md:w-[270px] lg:h-[375px] lg:w-[300px] z-[1] overflow-hidden cursor-pointer">
+                      <img alt="Bride & Groom Portrait" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs sm:text-sm album-label">Bride & Groom Portrait</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Beautiful couple moments</p>
+                      </div>
+                    </div>
+                    <div className="group album-right absolute border-2 md:border-4 border-white h-[141px] w-[118px] sm:h-[168px] sm:w-[140px] md:h-[202px] md:w-[168px] lg:h-[225px] lg:w-[187px] z-[2] -right-[18%] sm:-right-[20%] bottom-[10%] transition-transform duration-700 overflow-hidden cursor-pointer">
+                      <img alt="Bride & Groom" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs album-label">Bride & Groom</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Love stories told</p>
+                      </div>
+                    </div>
+                    <div className="group album-left absolute border-2 md:border-4 border-white h-[94px] w-[78px] sm:h-[112px] sm:w-[93px] md:h-[135px] md:w-[112px] lg:h-[150px] lg:w-[124px] z-[3] -left-[3%] sm:-left-[5%] bottom-[45%] transition-transform duration-700 overflow-hidden cursor-pointer">
+                      <img alt="Wedding Details" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=300&auto=format&fit=crop" />
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white font-medium text-xs album-label">Wedding Details</h3>
+                        <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Every detail matters</p>
                       </div>
                     </div>
                   </div>
@@ -439,26 +485,174 @@ export default function Home() {
               <div className="animate-fade-scale">
                 <div className="w-full min-h-screen">
                   <div className="overflow-y-auto w-full" style={{ height: 'calc(-100px + 100vh)' }}>
-                    <div className="flex gap-2 sm:gap-4 mx-auto max-w-[1800px]">
-                      {[...Array(4)].map((_, colIndex) => (
-                        <div key={colIndex} className="flex-1">
-                          {[1, 2, 3, 4, 5].map((imgIndex) => (
-                            <div key={imgIndex} className="mb-2 sm:mb-4">
-                              <div className="relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg group hover:scale-[1.02] transition-transform duration-700">
-                                <div style={{ paddingBottom: `${[75, 66.67, 56.25, 150, 133.33][Math.floor(Math.random() * 5)]}%`, position: 'relative' }}>
-                                  <img 
-                                    alt={`Photo ${colIndex}-${imgIndex}`}
-                                    loading="lazy"
-                                    className="w-full h-full absolute inset-0 object-cover"
-                                    src="https://cdn.bengalart.click/files/12mcMEvPCVgOZPuFsxjO-EzboN8ACFlxg"
-                                  />
-                                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ))}
+                    <div className="flex gap-3 sm:gap-4 mx-auto max-w-[1800px]">
+                      {/* Column 1 */}
+                      <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                        
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Commercial Product"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/woman-with-face-full-paint_w2dv0i.jpg"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Party Celebration"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                       
+                      </div>
+
+                      {/* Column 2 */}
+                      <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Sweet Baby"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725090/cute-kids-exploring-nature_zvzyn4.jpg"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Birthday Party"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Travel Destination"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                         <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Fashion Outdoor Portrait"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769724932/fashion-outdoor-traveling-portrait-pretty-cheerful-young-tourist-woman_hozd4c.jpg"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                      </div>
+
+                      {/* Column 3 */}
+                      <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Wedding Couple"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/young-woman-warm-sweater_bw7xav.jpg"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Tour & Travel"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Sweet Child"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                      </div>
+
+                      {/* Column 4 */}
+                      <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Girl Portrait"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Wedding Ceremony"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Wedding Ring Details"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                      </div>
+
+                      {/* Column 5 */}
+                      <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Happy Baby"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Commercial Fashion"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/beautiful-wedding-walk-nature-ukraine-sumy_gi4ccv.jpg"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                        
+                        <Link href="/work" className="group relative cursor-pointer overflow-hidden border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                          <img 
+                            alt="Product Display"
+                            loading="lazy"
+                            className="w-full h-auto object-cover"
+                            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -469,32 +663,119 @@ export default function Home() {
             {activeTab === 'Videos' && (
               <div className="animate-fade-scale">
                 <div className="w-full overflow-y-auto" style={{ height: 'calc(100vh - 100px)' }}>
-                  <div className="flex gap-4 mx-auto max-w-[1800px]">
-                    {[...Array(3)].map((_, colIndex) => (
-                      <div key={colIndex} className="flex-1">
-                        {[1, 2, 3, 4, 5].map((vidIndex) => (
-                          <div key={vidIndex} className="mb-4">
-                            <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white">
-                              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                                <video 
-                                  className="absolute inset-0 h-full w-full object-cover"
-                                  preload="metadata"
-                                  playsInline
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-md group-hover:bg-white/30 group-hover:h-20 group-hover:w-20 transition-all duration-300">
-                                    <svg className="h-8 w-8 fill-white text-white group-hover:h-10 group-hover:w-10 transition-all" viewBox="0 0 24 24">
-                                      <polygon points="6 3 20 12 6 21 6 3" />
-                                    </svg>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
+                  <div className="flex gap-3 sm:gap-4 mx-auto max-w-[1800px] pb-8">
+                    {/* Column 1 - 1 Video */}
+                    <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <video 
+                            className="absolute inset-0 h-full w-full object-cover"
+                            preload="metadata"
+                            playsInline
+                            controls
+                            src="https://res.cloudinary.com/dk8syjt2z/video/upload/v1767578825/Background-video_nmha1b.webm"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+                        </div>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Column 2 - 3 Videos */}
+                    <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/W7NHQyvKbdY"
+                            title="YouTube Video 1"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/UyeFKMNo2_U"
+                            title="YouTube Video 2"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/03yIuAgHeXo"
+                            title="YouTube Video 3"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Column 3 - 4 Videos */}
+                    <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/HAcLoqZO-Z0"
+                            title="YouTube Video 4"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <video 
+                            className="absolute inset-0 h-full w-full object-cover"
+                            preload="metadata"
+                            playsInline
+                            controls
+                            src="https://res.cloudinary.com/dk8syjt2z/video/upload/v1769511538/15705885-hd_1920_1080_60fps_gqic31.mp4"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+                        </div>
+                      </div>
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/KOC4w5LgxCk"
+                            title="YouTube Video 5"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/51OupKsM7xs"
+                            title="YouTube Video 6"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -504,50 +785,86 @@ export default function Home() {
             {activeTab === 'Reels' && (
               <div className="animate-fade-scale">
                 <div className="w-full overflow-y-auto" style={{ height: 'calc(100vh - 100px)' }}>
-                  <div className="flex gap-4 mx-auto max-w-[1800px]">
-                    {[...Array(4)].map((_, colIndex) => (
-                      <div key={colIndex} className="flex-1">
-                        {[1, 2, 3].map((reelIndex) => (
-                          <div key={reelIndex} className="mb-4">
-                            <div className="group relative aspect-[9/16] bg-zinc-900 rounded-xl overflow-hidden cursor-pointer border border-zinc-800/50 hover:border-[#D4AF37]/50 transition-colors">
-                              <img
-                                alt={`Reel ${colIndex}-${reelIndex}`}
-                                loading="lazy"
-                                className="transition-transform duration-500 group-hover:scale-105 object-cover"
-                                src="https://cdn.bengalart.click/files/1XlHsmM2ZPz6nC64tNOd0Z9mkLTgUTmmC"
-                                style={{ position: 'absolute', height: '100%', width: '100%', inset: 0 }}
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full">
-                                  <svg className="w-6 h-6 text-white fill-white" viewBox="0 0 24 24">
-                                    <polygon points="6 3 20 12 6 21 6 3" />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
+                  <div className="flex gap-3 sm:gap-4 mx-auto max-w-[1800px] pb-8">
+                    {/* Reels Column 1 */}
+                    <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/aEVQn9G54mI"
+                            title="Reel 1"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
                       </div>
-                    ))}
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/iSQZCJUYU9s"
+                            title="Reel 2"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Reels Column 2 */}
+                    <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/Ib3xiq8oU9k"
+                            title="Reel 3"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/Y6GTSsiKK_g"
+                            title="Reel 4"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Reels Column 3 */}
+                    <div className="flex-1 flex flex-col gap-3 sm:gap-4">
+                      <div className="group relative cursor-pointer overflow-hidden bg-black border-2 border-white sm:border-4 shadow-lg hover:scale-[1.02] transition-transform duration-700">
+                        <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                          <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src="https://www.youtube.com/embed/kFn4AltDf1Q"
+                            title="Reel 5"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* See More Albums Button */}
-            <div className="flex justify-center mt-10 mb-20">
-              <Link href="/work" className="group relative h-10 inline-flex items-center justify-center overflow-hidden border border-white/40 bg-gradient-to-r from-[#0a0a0a] to-[#1a1a1a] px-6 text-sm text-white hover:from-[#1a1a1a] hover:to-[#0a0a0a] transition-all duration-300">
-                <span className="relative inline-flex overflow-hidden font-medium">
-                  <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[150%] group-hover:skew-y-12">
-                    See More Albums
-                  </div>
-                  <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
-                    See More Albums
-                  </div>
-                </span>
-              </Link>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -812,6 +1129,597 @@ export default function Home() {
   </button>
 </div>
 
+  </div>
+</section>
+
+{/* Section 6 - Packages for Your Special Day */}
+<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full py-12 md:py-16 lg:py-20">
+  <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
+    
+    {/* Heading */}
+    <h2 className="text-center font-bold text-white mb-8 md:mb-16 px-4">
+      <span className="font-satoshi-light text-lg md:text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-[#be9b58] to-white">
+        Choose the perfect package for
+      </span>
+      <span className="block text-3xl md:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500 mt-2">
+        Your Special Day
+      </span>
+    </h2>
+
+    {/* Tab Switcher */}
+    <div className="flex justify-center mb-12">
+      <div className="bg-zinc-900/50 p-1 border border-zinc-800 rounded-lg inline-flex">
+        <button
+          onClick={() => setPackageTab('Packages')}
+          className="relative px-6 py-2 bg-transparent transition-colors"
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          {packageTab === 'Packages' && (
+            <div className="absolute inset-0 bg-zinc-800 rounded" />
+          )}
+          <span className={`relative block text-sm font-light tracking-wide transition-colors ${
+            packageTab === 'Packages' ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'
+          }`}>
+            Packages
+          </span>
+        </button>
+        <button
+          onClick={() => setPackageTab('Custom')}
+          className="relative px-6 py-2 bg-transparent transition-colors"
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          {packageTab === 'Custom' && (
+            <div className="absolute inset-0 bg-zinc-800 rounded" />
+          )}
+          <span className={`relative block text-sm font-light tracking-wide transition-colors ${
+            packageTab === 'Custom' ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'
+          }`}>
+            Custom
+          </span>
+        </button>
+      </div>
+    </div>
+
+    {/* Category Filter Buttons */}
+    <div className="flex justify-center gap-3 flex-wrap mb-12">
+      <button
+        type="button"
+        onClick={() => setCustomCategory('Wedding')}
+        className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+          customCategory === 'Wedding'
+            ? 'border-[#be9b58] bg-[#be9b58] text-white'
+            : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+        }`}
+      >
+        <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+          <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+            customCategory === 'Wedding' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+          }`}>
+            Wedding
+          </div>
+          {customCategory !== 'Wedding' && (
+            <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+              Wedding
+            </div>
+          )}
+        </span>
+      </button>
+      
+      <button
+        type="button"
+        onClick={() => setCustomCategory('Commercial')}
+        className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+          customCategory === 'Commercial'
+            ? 'border-[#be9b58] bg-[#be9b58] text-white'
+            : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+        }`}
+      >
+        <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+          <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+            customCategory === 'Commercial' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+          }`}>
+            Commercial
+          </div>
+          {customCategory !== 'Commercial' && (
+            <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+              Commercial
+            </div>
+          )}
+        </span>
+      </button>
+      
+      <button
+        type="button"
+        onClick={() => setCustomCategory('Social Media')}
+        className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+          customCategory === 'Social Media'
+            ? 'border-[#be9b58] bg-[#be9b58] text-white'
+            : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+        }`}
+      >
+        <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+          <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+            customCategory === 'Social Media' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+          }`}>
+            Social Media
+          </div>
+          {customCategory !== 'Social Media' && (
+            <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+              Social Media
+            </div>
+          )}
+        </span>
+      </button>
+      
+      <button
+        type="button"
+        onClick={() => setCustomCategory('General')}
+        className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+          customCategory === 'General'
+            ? 'border-[#be9b58] bg-[#be9b58] text-white'
+            : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+        }`}
+      >
+        <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+          <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+            customCategory === 'General' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+          }`}>
+            General
+          </div>
+          {customCategory !== 'General' && (
+            <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+              General
+            </div>
+          )}
+        </span>
+      </button>
+    </div>
+
+    {/* Packages Grid */}
+    {packageTab === 'Packages' && (
+      <>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+      
+      {/* Wedding Category - 3 packages */}
+      {customCategory === 'Wedding' && (
+        <>
+          {/* Silver Package */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              SILVER PACKAGE
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳15,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['1 Photographer', '1 Cinematographer', 'Duration: 5 Hours', 'Unlimited Raw & Maximum Photo Edited', 'A Trailer & A Documentary Wedding Film'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+
+          {/* Silver Package (Duplicate) */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              SILVER PACKAGE
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳20,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['1 Photographer', '1 Cinematographer', 'Duration: 5 Hours', 'Unlimited Raw & Maximum Photo Edited', 'A Trailer & A Documentary Wedding Film'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+
+          {/* Gold Package */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            {/* Popular Badge */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-0">
+              <span className="bg-[#be9b58] text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                Popular
+              </span>
+            </div>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              GOLD PACKAGE
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳25,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['2 Photographer', '1 Cinematographer', 'Duration: 5 Hours', 'Unlimited Raw & Maximum Photo Edited', 'A Trailer & A Documentary Wedding Film', '15 Printed Copy'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+        </>
+      )}
+
+      {/* Commercial Category - 1 package */}
+      {customCategory === 'Commercial' && (
+        <>
+          {/* Corporate Event */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              CORPORATE EVENT
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳50,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['2 Photographers', '1 Cinematographer', 'Event Highlight Reel', 'Unlimited Photos', 'Duration: 4 Hours'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+
+          {/* Corporate Event Duplicate */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              CORPORATE EVENT
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳50,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['2 Photographers', '1 Cinematographer', 'Event Highlight Reel', 'Unlimited Photos', 'Duration: 4 Hours'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+        </>
+      )}
+
+      {/* Social Media Category - 1 package */}
+      {customCategory === 'Social Media' && (
+        <>
+          {/* Reel Bundle */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              REEL BUNDLE
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳15,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['5 High Quality Reels', 'Professional Editing', 'Trending Audio Selection', 'Color Grading', '1 Revision per Reel'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+
+          {/* Reel Bundle Popular */}
+          <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+            {/* Popular Badge */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-0">
+              <span className="bg-[#be9b58] text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                Popular
+              </span>
+            </div>
+            <h3 className="text-xl font-bold mb-2 text-white/90">
+              REEL BUNDLE
+            </h3>
+            <div className="mb-8 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">৳15,000</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-grow">
+              {['5 High Quality Reels', 'Professional Editing', 'Trending Audio Selection', 'Color Grading', '1 Revision per Reel'].map((feature, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                  <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/packages" className="mt-auto">
+              <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+                Choose Plan
+              </button>
+            </Link>
+          </div>
+        </>
+      )}
+
+      {/* General Category - 1 package */}
+      {customCategory === 'General' && (
+        <div className="relative flex flex-col h-full bg-[#0a0a0a] border border-white/10 p-8 hover:-translate-y-2 hover:border-[#be9b58]/30 transition-all duration-300 group shadow-2xl animate-slide-right" style={{ animationDelay: '0s' }}>
+          <h3 className="text-xl font-bold mb-2 text-white/90">
+            General Photography
+          </h3>
+          <p className="text-gray-400 text-sm mb-6">
+            Flexible package for any occasion or event
+          </p>
+          <div className="mb-8 flex items-baseline gap-2">
+            <span className="text-4xl font-bold text-white">৳20,000</span>
+            <span className="text-gray-500 text-sm line-through">৳28,000</span>
+          </div>
+          <ul className="space-y-4 mb-8 flex-grow">
+            {['3 hours session', '1-2 photographers', '150+ edited photos', 'Various locations', 'Online gallery'].map((feature, i) => (
+              <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                <svg className="w-5 h-5 text-[#be9b58] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/packages" className="mt-auto">
+            <button className="w-full bg-[#be9b58] text-white py-4 font-bold uppercase tracking-wider hover:bg-[#a38548] transition-colors duration-300">
+              Choose Plan
+            </button>
+          </Link>
+        </div>
+      )}
+
+        </div>
+
+        
+      </>
+    )}
+
+    {/* Custom Package Content */}
+    {packageTab === 'Custom' && (
+      <div className="max-w-2xl mx-auto animate-fade-scale">
+        <div className="bg-zinc-900/50 rounded-2xl border border-zinc-800 p-8 md:p-12">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-white mb-4">Create Your Custom Package</h3>
+            <p className="text-zinc-400 mb-6">Tell us about your special event and we'll craft the perfect photography package for you.</p>
+            
+            {/* Category Filter Buttons */}
+            <div className="flex justify-center gap-3 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setCustomCategory('Wedding')}
+                className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+                  customCategory === 'Wedding'
+                    ? 'border-[#be9b58] bg-[#be9b58] text-white'
+                    : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+                }`}
+              >
+                <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+                  <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+                    customCategory === 'Wedding' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+                  }`}>
+                    Wedding
+                  </div>
+                  {customCategory !== 'Wedding' && (
+                    <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+                      Wedding
+                    </div>
+                  )}
+                </span>
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => setCustomCategory('Commercial')}
+                className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+                  customCategory === 'Commercial'
+                    ? 'border-[#be9b58] bg-[#be9b58] text-white'
+                    : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+                }`}
+              >
+                <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+                  <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+                    customCategory === 'Commercial' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+                  }`}>
+                    Commercial
+                  </div>
+                  {customCategory !== 'Commercial' && (
+                    <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+                      Commercial
+                    </div>
+                  )}
+                </span>
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => setCustomCategory('Social Media')}
+                className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+                  customCategory === 'Social Media'
+                    ? 'border-[#be9b58] bg-[#be9b58] text-white'
+                    : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+                }`}
+              >
+                <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+                  <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+                    customCategory === 'Social Media' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+                  }`}>
+                    Social Media
+                  </div>
+                  {customCategory !== 'Social Media' && (
+                    <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+                      Social Media
+                    </div>
+                  )}
+                </span>
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => setCustomCategory('General')}
+                className={`group relative h-8 inline-flex items-center justify-center overflow-hidden border px-4 text-xs transition-all duration-300 ${
+                  customCategory === 'General'
+                    ? 'border-[#be9b58] bg-[#be9b58] text-white'
+                    : 'border-white/20 bg-transparent text-gray-400 hover:border-[#be9b58] hover:text-[#be9b58]'
+                }`}
+              >
+                <span className="relative inline-flex overflow-hidden font-bold uppercase tracking-wider">
+                  <div className={`translate-y-0 skew-y-0 transition duration-500 ${
+                    customCategory === 'General' ? '' : 'group-hover:-translate-y-[150%] group-hover:skew-y-12'
+                  }`}>
+                    General
+                  </div>
+                  {customCategory !== 'General' && (
+                    <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+                      General
+                    </div>
+                  )}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <form className="space-y-6">
+            {/* Event Type */}
+            <div>
+              <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Event Type</label>
+              <select className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent">
+                <option>Select Event Type</option>
+                <option>Wedding</option>
+                <option>Corporate Event</option>
+                <option>Birthday Party</option>
+                <option>Product Shoot</option>
+                <option>Portrait Session</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            {/* Date */}
+            <div>
+              <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Event Date</label>
+              <input
+                type="date"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent"
+              />
+            </div>
+
+            {/* Duration */}
+            <div>
+              <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Coverage Duration (hours)</label>
+              <input
+                type="number"
+                min="1"
+                max="12"
+                placeholder="e.g., 4"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent"
+              />
+            </div>
+
+            {/* Location */}
+            <div>
+              <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Location</label>
+              <input
+                type="text"
+                placeholder="Event location"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent"
+              />
+            </div>
+
+            {/* Additional Requirements */}
+            <div>
+              <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Additional Requirements</label>
+              <textarea
+                rows={4}
+                placeholder="Tell us about any special requests, number of photographers needed, video coverage, etc."
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent resize-none"
+              />
+            </div>
+
+            {/* Contact Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Your Name</label>
+                <input
+                  type="text"
+                  placeholder="Full name"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Phone Number</label>
+                <input
+                  type="tel"
+                  placeholder="Your phone number"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-zinc-400 text-sm font-medium mb-2 uppercase tracking-wider">Email Address</label>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#be9b58] focus:border-transparent"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-[#be9b58] hover:bg-white text-black font-bold py-4 rounded-lg transition-all duration-300 uppercase tracking-wider text-sm hover:shadow-lg hover:shadow-[#be9b58]/50"
+            >
+              Request Custom Quote
+            </button>
+          </form>
+        </div>
+      </div>
+    )}
+
 
     
 
@@ -820,6 +1728,61 @@ export default function Home() {
 
   </div>
 </section>
+
+    {/* Section 7 - Let's Connect CTA */}
+    <section className="w-full min-h-[85vh] flex flex-col justify-between py-12 px-4 md:px-10 relative overflow-hidden bg-gradient-to-br from-[#be9b58] via-[#a38548] to-[#8c7335]">
+      <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none mix-blend-overlay"></div>
+      <div className="absolute inset-0 opacity-5 pointer-events-none select-none flex items-center justify-center overflow-hidden">
+        <div className="text-[15vw] md:text-[20vw] font-black uppercase leading-none text-black whitespace-nowrap" style={{ transform: 'translateY(-31.7832px)' }}>Click Arora</div>
+      </div>
+
+      <div className="flex justify-between items-start relative z-10">
+        <div className="w-6 h-6 md:w-10 md:h-10 border-l-2 border-t-2 border-black"></div>
+        <div className="w-6 h-6 md:w-10 md:h-10 border-r-2 border-t-2 border-black"></div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center flex-grow relative z-10 gap-8 md:gap-12">
+        <div className="w-24 h-24 md:w-40 md:h-40 relative text-black" style={{ transform: `rotate(${16.3951 + scrollY * 0.05}deg)` }}>
+          <svg width="100%" height="100%" viewBox="0 0 1000 1000" className="fill-current">
+            <g transform="translate(0,-52.3622)">
+              <path d="m 646.49762,374.71558 a 213.14218,199.00005 0 1 1 -426.28436,0 213.14218,199.00005 0 1 1 426.28436,0 z" transform="matrix(1.172926,0,0,1.2562811,-24.495696,40.647144)" fill="none" stroke="currentColor" strokeWidth="14.828"></path>
+              <path d="m 483.79817,281.39524 c -78.22122,0 -147.32326,39.05231 -188.87501,98.71875 l 68.84375,119.28125 125.84376,-217.9375 c -1.93146,-0.0479 -3.86951,-0.0625 -5.8125,-0.0625 z m 19.25,0.8125 -68.875,119.28125 251.68749,0 C 649.76723,335.26888 582.08352,288.76161 503.04817,282.20774 z M 287.54816,391.36399 c -21.42174,34.94341 -33.75,76.04095 -33.75,120.03125 0,35.02939 7.83703,68.22126 21.84375,97.9375 l 137.75001,0 -125.84376,-217.96875 z m 266.62501,22.125 125.84374,217.9375 c 21.42174,-34.94341 33.78125,-76.04095 33.78125,-120.03125 0,-35.01463 -7.84813,-68.1996 -21.84375,-97.90625 l -137.78124,0 z m 49.59375,109.9375 -125.8125,217.90625 c 1.94178,0.0484 3.89031,0.0625 5.84375,0.0625 78.2094,0 147.28996,-39.03629 188.84374,-98.6875 L 603.76692,523.42649 z m -322.03126,97.90625 c 36.09801,66.2005 103.76103,112.69668 182.78126,119.25 l 68.84375,-119.25 -251.62501,0 z" fill="currentColor"></path>
+            </g>
+          </svg>
+        </div>
+
+        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase text-center leading-[0.9] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-black to-neutral-800 drop-shadow-sm">
+          Let&apos;s<br />Connect
+        </h2>
+
+        <div className="flex flex-col items-center gap-6">
+          <Link href="/connect" className="group relative px-8 py-4 bg-black text-[#be9b58] font-bold uppercase tracking-wider overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <span className="relative z-10 group-hover:text-black transition-colors duration-300">Start New Project</span>
+            <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></div>
+          </Link>
+
+          <button 
+            onClick={() => {
+              navigator.clipboard.writeText('info@clickarora.com')
+              setCopied(true)
+              setTimeout(() => setCopied(false), 2000)
+            }}
+            className="flex items-center gap-2 text-black font-bold hover:opacity-60 transition-opacity cursor-pointer"
+          >
+            <span className="text-lg">{copied ? 'Copied!' : 'info@clickarora.com'}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy w-4 h-4">
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-end relative z-10 mt-12">
+        <div className="w-6 h-6 md:w-10 md:h-10 border-l-2 border-b-2 border-black"></div>
+        <div className="w-6 h-6 md:w-10 md:h-10 border-r-2 border-b-2 border-black"></div>
+      </div>
+    </section>
 
     {/* Drawer Modal */}
     {drawerOpen && (
@@ -1036,6 +1999,7 @@ export default function Home() {
       </>
     )}
 
+   
       
       
     </div>

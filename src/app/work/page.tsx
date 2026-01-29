@@ -26,18 +26,8 @@ const portfolioItems = [
     category: 'Portrait',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
   },
-  {
-    id: 4,
-    title: 'Wedding Ceremony',
-    category: 'Wedding',
-    image: 'https://images.unsplash.com/photo-1465495976519-51ea266dd293?w=800&h=600&fit=crop',
-  },
-  {
-    id: 5,
-    title: 'Business Conference',
-    category: 'Commercial',
-    image: 'https://images.unsplash.com/photo-1540575467063-178f50002c4b?w=800&h=600&fit=crop',
-  },
+ 
+ 
   {
     id: 6,
     title: 'Family Portrait',
@@ -50,12 +40,7 @@ const portfolioItems = [
     category: 'Wedding',
     image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop',
   },
-  {
-    id: 8,
-    title: 'Product Launch',
-    category: 'Commercial',
-    image: 'https://images.unsplash.com/photo-1505373877841-f48dee60b863?w=800&h=600&fit=crop',
-  },
+ 
 ]
 
 export default function Work() {
@@ -147,24 +132,8 @@ export default function Work() {
         </Container>
       </div>
 
-      {/* CTA Section */}
-      <div className="relative z-20 pb-20">
-        <Container>
-          <div className="bg-zinc-900/50 border border-gray-800 p-8 md:p-12 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Ready to Create Something Amazing?
-          </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Let&apos;s collaborate and bring your vision to life with professional photography and videography.
-          </p>
-          <Link href="/connect">
-            <button className="px-8 py-3 bg-white text-black font-bold uppercase text-sm hover:bg-gray-200 transition-colors">
-              Get In Touch
-            </button>
-          </Link>
-        </div>
-        </Container>
-      </div>
+      
+      
     </div>
   )
 }

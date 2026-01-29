@@ -129,27 +129,7 @@ export default function Reels() {
         </div>
       )}
 
-      {/* Instagram Feed Section */}
-      <Container className="relative z-20 pb-20">
-        <>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center animate-fade-in-up">
-            Follow Us on Instagram
-          </h2>
-          <div className="text-center">
-            <p className="text-gray-400 mb-6">
-              For more daily content, behind-the-scenes, and latest updates
-            </p>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-3 bg-white text-black font-bold uppercase text-sm hover:bg-gray-200 transition-colors"
-            >
-              @bengalart
-            </a>
-          </div>
-        </>
-      </Container>
+     
     </div>
   )
 }
