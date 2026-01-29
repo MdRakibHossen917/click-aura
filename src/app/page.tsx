@@ -172,10 +172,16 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       </div>
 
-      {/* Big Blend Text Overlay */}
+     
+      {/* Section 1 - Hero Section with Video */}
+      <section className="relative z-20 h-screen w-full flex items-center justify-center">
+        <div className="container mx-auto px-4  pointer-events-auto h-full flex items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-center relative w-full">
+
+             {/* Left Content */}
        <div className="relative pt-20 md:absolute inset-0 z-10 md:h-full pointer-events-none mix-blend-exclusion md:pt-0">
-        <div className="mx-4 md:mx-10 lg:mx-20 md:absolute md:inset-0 flex items-center justify-start">
-          <h1 className="text-6xl sm:text-6xl md:text-7xl lg:text-9xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-neutral-500 leading-tight lg:-mt-160">
+        <div className="   md:absolute md:inset-0 flex items-center justify-start">
+          <h1 className="text-6xl sm:text-6xl md:text-7xl lg:text-9xl font-bold text-transparent bg-clip-text bg-linear-to-b from-white to-neutral-700 leading-tight  ">
             Capturing<br />
             Life&apos;s Best
             <br />
@@ -184,10 +190,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Section 1 - Hero Section with Video */}
-      <section className="relative z-20 h-screen w-full flex items-center justify-center">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 pointer-events-auto h-full flex items-center">
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center relative w-full">
 
             {/* Right Content */}
             <div className="md:col-start-9 md:col-end-13 text-left md:text-right relative z-10">
@@ -1030,6 +1032,24 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+         {/* Section 4 - Special Day */}
+     
+<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full py-12 md:py-16 lg:py-20">
+  <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
+    
+    
+
+     
+
+    
+
+    
+
+  </div>
+</section>
+
+        
       </>
     )}
 
