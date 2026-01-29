@@ -5,7 +5,7 @@ import { Facebook, Linkedin, Instagram, Twitter } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black border-t border-gray-800 mt-20" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+    <footer className="relative bg-black   border-gray-800  " style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <div className="px-4 md:px-10 lg:px-20 py-12 md:py-20">
         <div className="max-w-7xl mx-auto">
           {/* Top Section */}

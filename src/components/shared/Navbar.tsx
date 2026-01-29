@@ -97,8 +97,8 @@ const Navbar = () => {
         <div className="relative shrink-0 flex items-center h-full">
           {/* Overlay Menu */}
           {menuOpen && (
-            <div className="fixed z-50 right-12 top-10">
-              <div className="bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 relative w-120 h-162.5 -top-6 -right-6">
+            <div className="fixed z-50 right-0 top-0 w-full h-screen md:w-auto md:h-auto md:right-12 md:top-10">
+              <div className="bg-zinc-950/95 md:bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 relative w-full md:w-120 h-full md:h-162.5 md:-top-6 md:-right-6">
                 <div className="flex flex-col justify-between h-full p-[60px_20px_30px_20px] md:p-[100px_40px_50px_40px] box-border">
                   {/* Menu links */}
                   <div className="flex flex-col gap-5 md:gap-2.5 uppercase">
