@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 
 interface ImageSkeletonProps {
   children: React.ReactNode
@@ -15,10 +15,27 @@ export default function ImageSkeleton({ children, className = '' }: ImageSkeleto
     setIsLoading(false)
   }, [])
 
-  // Clone children and add onLoad handler if it's an Image component
-  const childrenWithHandler = children && typeof children === 'object' && 'props' in children
-    ? { ...children, props: { ...children.props, onLoad: handleImageLoad } }
-    : children
+  // Clone children and add onLoad handler if possible
+  const childrenWithHandler = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) {
+      return child
+    }
+
+    const element = child as React.ReactElement<Record<string, unknown>>
+    const existingOnLoad = element.props.onLoad as ((event: unknown) => void) | undefined
+    const existingOnLoadedMetadata = element.props.onLoadedMetadata as ((event: unknown) => void) | undefined
+
+    return React.cloneElement(element, {
+      onLoad: (event: unknown) => {
+        existingOnLoad?.(event)
+        handleImageLoad()
+      },
+      onLoadedMetadata: (event: unknown) => {
+        existingOnLoadedMetadata?.(event)
+        handleImageLoad()
+      },
+    })
+  })
 
   return (
     <div className={`relative ${className}`} style={{ contain: 'layout' }}>

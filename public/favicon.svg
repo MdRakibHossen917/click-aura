@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Background -->
+  <rect width="180" height="180" fill="#000000"/>
+  
+  <!-- Gradient circle -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#be9b58;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Circle background -->
+  <circle cx="90" cy="90" r="85" fill="url(#grad)"/>
+  
+  <!-- Letter C -->
+  <text x="90" y="120" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="middle">C</text>
+</svg>
