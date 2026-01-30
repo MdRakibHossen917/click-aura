@@ -221,7 +221,7 @@ export default function Home() {
             <div className="md:col-start-9 md:col-end-13 text-left md:text-right relative z-10">
               <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 <h2 className="text-sm sm:text-base md:text-lg leading-relaxed text-white md:text-black font-normal tracking-wide mb-6 md:mb-8">
-                  HI, ALVI  HERE. I&apos;M A PROFESSIONAL PHOTOGRAPHER IN BANGLADESH AND THE CREATIVE EYE BEHIND BENGAL ART.
+                  HI, ALVI  HERE. I&apos;M A PROFESSIONAL PHOTOGRAPHER IN BANGLADESH AND THE CREATIVE EYE BEHIND Click Arora.
                   I SPECIALIZE IN CAPTURING LIFE&apos;S MAGICAL MOMENTS, ONE CLICK AT A TIME.
                   LET&apos;S CREATE SOMETHING UNFORGETTABLE TOGETHER!
                 </h2>
@@ -333,7 +333,7 @@ export default function Home() {
               </h3>
               
               <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed">
-                Hi, I&apos;m Alvi, a professional photographer based in Bangladesh and the creative eye behind Bengal Art. 
+                Hi, I&apos;m Alvi, a professional photographer based in Bangladesh and the creative eye behind Click Arora. 
                 With years of experience in capturing life&apos;s most precious moments, I specialize in wedding photography, 
                 commercial shoots, and portrait sessions that tell your unique story.
               </p>
@@ -455,7 +455,7 @@ export default function Home() {
                 <div className="min-h-[35vh] md:min-h-[45vh]">
                   <div className="album-image-stack flex w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] justify-center relative mt-[4vh] will-change-transform mx-auto md:ml-[20vw]">
                     <div className="group absolute border-2 md:border-4 border-white h-[235px] w-[188px] sm:h-[280px] sm:w-[224px] md:h-[337px] md:w-[270px] lg:h-[375px] lg:w-[300px] z-[1] overflow-hidden cursor-pointer">
-                      <img alt="Bride & Groom Portrait" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&auto=format&fit=crop" />
+                      <img alt="Bride & Groom Portrait" loading="lazy" decoding="async" className="w-full h-full object-cover" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725089/just-married-couple-having-fun-together_tuc5yy.jpg" />
                       <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <h3 className="text-white font-medium text-xs sm:text-sm album-label">Bride & Groom Portrait</h3>
                         <p className="text-zinc-300 text-xs album-label" style={{ animationDelay: '0.05s' }}>Beautiful couple moments</p>
@@ -1006,7 +1006,7 @@ export default function Home() {
             COUNTRIES SERVED
           </p>
           <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-            Taking Bengal Art's vision global
+            Taking Click Arora vision global
           </p>
         </div>
       </div>

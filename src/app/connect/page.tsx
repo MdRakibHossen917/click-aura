@@ -274,7 +274,7 @@ export default function Connect() {
               width="100%"
               height="100%"
               frameBorder="0"
-              title="Bengal Art Location"
+              title="Click Arora Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9889850843006!2d90.38669!3d23.81!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a1d8b5b5b5%3A0x5c5c5c5c5c5c5c5c!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1234567890"
               style={{ border: 0 }}
               allowFullScreen

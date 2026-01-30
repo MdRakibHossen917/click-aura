@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bengal Art - Professional Photography & Cinematography",
-  description: "Bengal Art - Capturing life's precious moments with professional photography and videography services in Bangladesh",
+  title: "Click Arora - Professional Photography & Cinematography",
+  description: "Click Arora - Capturing life's precious moments with professional photography and videography services in Bangladesh",
 };
 
 export default function RootLayout({

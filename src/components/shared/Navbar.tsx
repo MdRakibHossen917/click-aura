@@ -71,7 +71,7 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300   ${
         showBlur
-          ? 'backdrop-blur-sm/10 bg-zinc-900/10  '
+          ? 'backdrop-blur-xs bg-zinc-900/10  '
           : 'bg-transparent'
       }`}
     >
