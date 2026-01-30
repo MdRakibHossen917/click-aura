@@ -78,7 +78,7 @@ const Navbar = () => {
       <nav className="w-11/12 mx-auto flex justify-between items-center py-4 md:py-6 relative h-20 md:h-24">
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center h-full">
-          <div className="w-12 md:w-30 h-auto">
+          <div className="w-24 md:w-34 h-auto">
             <Image
               src="/Click Aura-logo-transparent.png"
               alt="Click Aura Logo"

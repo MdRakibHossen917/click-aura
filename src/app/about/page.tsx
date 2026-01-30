@@ -74,7 +74,7 @@ export default function About() {
   const row3Images = [...workImages.slice(12), ...workImages.slice(12)]
 
   return (
-    <div className="relative w-full min-h-screen bg-black" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+    <div className="relative w-full min-h-screen bg-zinc-50 dark:bg-black" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <style jsx>{`
         @keyframes fadeInUp {
           from {

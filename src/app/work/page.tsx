@@ -8,7 +8,7 @@ export default function Work() {
   const [activeTab, setActiveTab] = useState('Albums')
 
   return (
-    <div className="min-h-screen bg-black container mx-auto px-4 md:px-6 lg:px-8 pt-32 md:pt-40 pb-12 md:pb-20 overflow-hidden">
+    <div className="min-h-screen bg-zinc-50 dark:bg-black container mx-auto px-4 md:px-6 lg:px-8 pt-32 md:pt-40 pb-12 md:pb-20 overflow-hidden">
       <h2 className="text-center font-bold text-white mb-12 md:mb-16 px-4">
         <span className="font-satoshi-light text-lg md:text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-[#be9b58] to-white">
           Explore Our

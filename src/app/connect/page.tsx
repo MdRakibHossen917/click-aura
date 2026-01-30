@@ -44,7 +44,7 @@ export default function Connect() {
   }
 
   return (
-    <div className="relative w-full min-h-screen bg-black" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+    <div className="relative w-full min-h-screen bg-zinc-50 dark:bg-black" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <style jsx>{`
         @keyframes fadeInUp {
           from {
