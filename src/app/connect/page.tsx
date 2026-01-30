@@ -102,10 +102,10 @@ export default function Connect() {
                   <div>
                     <h3 className="text-white font-bold mb-2">Phone</h3>
                     <a
-                      href="tel:+8801234567890"
+                      href="tel:+8801300981501"
                       className="text-gray-400 hover:text-white transition-colors"
                     >
-                      +880 123 456 7890
+                      +8801300981501
                     </a>
                   </div>
                 </div>

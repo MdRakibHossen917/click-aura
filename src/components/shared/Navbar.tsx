@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { Facebook, Linkedin, Instagram, Twitter } from 'lucide-react'
+import { Facebook, Linkedin, Instagram, Twitter, Github } from 'lucide-react'
 
 const menuItems = [
   { name: 'Home', href: '/' },
@@ -78,10 +78,10 @@ const Navbar = () => {
       <nav className="w-11/12 mx-auto flex justify-between items-center py-4 md:py-6 relative h-20 md:h-24">
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center h-full">
-          <div className="w-12 md:w-16 h-auto">
+          <div className="w-12 md:w-30 h-auto">
             <Image
-              src="/logo.png"
-              alt="Logo"
+              src="/Click Aura-logo-transparent.png"
+              alt="Click Aura Logo"
               width={100}
               height={100}
               className="w-full h-auto"
@@ -114,17 +114,20 @@ const Navbar = () => {
                   </div>
                   {/* Social icons */}
                   <div className="flex flex-wrap gap-6 mt-auto items-center text-zinc-400">
-                    <a href="https://facebook.com" target="_blank" className="hover:text-white">
-                      <Facebook />
+                    <a href="https://www.facebook.com/md.rakib.hossen.41751" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                      <Facebook size={24} />
                     </a>
-                    <a href="https://linkedin.com" target="_blank" className="hover:text-white">
-                      <Linkedin />
+                    <a href="https://www.linkedin.com/in/rakibhossen917/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                      <Linkedin size={24} />
                     </a>
-                    <a href="https://instagram.com" target="_blank" className="hover:text-white">
-                      <Instagram />
+                    <a href="https://github.com/MdRakibHossen917" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                      <Github size={24} />
                     </a>
-                    <a href="https://twitter.com" target="_blank" className="hover:text-white">
-                      <Twitter />
+                    <a href="#" className="hover:text-white transition-colors">
+                      <Instagram size={24} />
+                    </a>
+                    <a href="#" className="hover:text-white transition-colors">
+                      <Twitter size={24} />
                     </a>
                   </div>
                 </div>

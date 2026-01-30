@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import { useState } from 'react'
 import Link from 'next/link'
+import ImageSkeleton from '@/components/shared/ImageSkeleton'
 
 export default function Work() {
   const [activeTab, setActiveTab] = useState('Albums')
@@ -19,12 +19,12 @@ export default function Work() {
       </h2>
       
       <div className="flex flex-col items-center justify-center relative w-full">
-        <div className="h-full bg-zinc-900/50 p-1 border border-zinc-800 rounded-lg inline-flex">
+        <div className="h-full bg-zinc-900/50 p-2 border border-zinc-800 rounded inline-flex">
           {['Albums', 'Photos', 'Videos', 'Reels'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className="relative px-6 py-2 bg-transparent transition-colors"
+              className="relative px-5 py-2 bg-transparent transition-colors"
               style={{ transformStyle: 'preserve-3d' }}
             >
               {activeTab === tab && (
@@ -55,16 +55,22 @@ export default function Work() {
                           {/* Main Large Image */}
                           <div className="col-span-2 row-span-2">
                             <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                              <img alt="Wedding Couple Walking in Nature" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/beautiful-wedding-walk-nature-ukraine-sumy_gi4ccv.jpg" />
+                              <ImageSkeleton className="w-full h-full">
+                                <img alt="Wedding Couple Walking in Nature" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/beautiful-wedding-walk-nature-ukraine-sumy_gi4ccv.jpg" />
+                              </ImageSkeleton>
                             </div>
                           </div>
                           {/* Top Right Image */}
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Just Married Couple" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725089/just-married-couple-having-fun-together_tuc5yy.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Just Married Couple" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725089/just-married-couple-having-fun-together_tuc5yy.jpg" />
+                            </ImageSkeleton>
                           </div>
                           {/* Bottom Right Image */}
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Wedding Celebration" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1751531746/samples/balloons.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Wedding Celebration" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1751531746/samples/balloons.jpg" />
+                            </ImageSkeleton>
                           </div>
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -90,14 +96,20 @@ export default function Work() {
                         <div className="grid grid-cols-3 grid-rows-2 gap-[4px] h-full">
                           <div className="col-span-2 row-span-2">
                             <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                              <img alt="Colorful Kingfisher Bird" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/colorful-kingfisher-bird-sitting-tree-branch_xacat9.jpg" />
+                              <ImageSkeleton className="w-full h-full">
+                                <img alt="Colorful Kingfisher Bird" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/colorful-kingfisher-bird-sitting-tree-branch_xacat9.jpg" />
+                              </ImageSkeleton>
                             </div>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Beautiful Blue Kingfisher" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-blue-kingfisher-bird-branch_s57u55.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Beautiful Blue Kingfisher" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-blue-kingfisher-bird-branch_s57u55.jpg" />
+                            </ImageSkeleton>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="European Bee-Eater" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-shot-european-bee-eater-bird-perched-log-forest_ztagjt.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="European Bee-Eater" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-shot-european-bee-eater-bird-perched-log-forest_ztagjt.jpg" />
+                            </ImageSkeleton>
                           </div>
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -122,10 +134,14 @@ export default function Work() {
                       <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-900 rounded-lg">
                         <div className="grid grid-cols-2 gap-[3px] h-full">
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Professional Portrait" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Professional Portrait" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                            </ImageSkeleton>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Portrait Face" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Portrait Face" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                            </ImageSkeleton>
                           </div>
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -151,14 +167,20 @@ export default function Work() {
                         <div className="grid grid-cols-3 grid-rows-2 gap-[4px] h-full">
                           <div className="col-span-2 row-span-2">
                             <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                              <img alt="Woman Farmer with Cows" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/young-woman-farmer-looking-after-cows-cowshed_ylwodo.jpg" />
+                              <ImageSkeleton className="w-full h-full">
+                                <img alt="Woman Farmer with Cows" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/young-woman-farmer-looking-after-cows-cowshed_ylwodo.jpg" />
+                              </ImageSkeleton>
                             </div>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Woman Animal Farming" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/view-woman-working-animal-farming-field-celebrate-labour-day-women_1_ffacyb.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Woman Animal Farming" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/view-woman-working-animal-farming-field-celebrate-labour-day-women_1_ffacyb.jpg" />
+                            </ImageSkeleton>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Woman with Goat" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/front-view-smiley-woman-holding-goat_sxivfd.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Woman with Goat" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/front-view-smiley-woman-holding-goat_sxivfd.jpg" />
+                            </ImageSkeleton>
                           </div>
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -184,14 +206,20 @@ export default function Work() {
                         <div className="grid grid-cols-3 grid-rows-2 gap-[4px] h-full">
                           <div className="col-span-2 row-span-2">
                             <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                              <img alt="Basketball Game" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733956/basketball-game_pffvah.jpg" />
+                              <ImageSkeleton className="w-full h-full">
+                                <img alt="Two Birds" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1751531745/samples/two-ladies.jpg" />
+                              </ImageSkeleton>
                             </div>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Friends with Coffee" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733956/smiley-friends-with-books-coffee-outdoors_le2hly.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Friends with Coffee" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733956/smiley-friends-with-books-coffee-outdoors_le2hly.jpg" />
+                            </ImageSkeleton>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="University Cafeteria" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733957/universityCafeteria_kmkmlb.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="University Cafeteria" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733957/universityCafeteria_kmkmlb.jpg" />
+                            </ImageSkeleton>
                           </div>
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -216,10 +244,14 @@ export default function Work() {
                       <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-900 rounded-lg">
                         <div className="grid grid-cols-2 gap-[3px] h-full">
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Woman with Colorful Painting" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/rsz_young-woman-posing-her-colorful-painting_qmvlng.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Woman with Colorful Painting" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/rsz_young-woman-posing-her-colorful-painting_qmvlng.jpg" />
+                            </ImageSkeleton>
                           </div>
                           <div className="relative w-full h-full overflow-hidden bg-gray-800 border-4 border-white">
-                            <img alt="Young People Packing Humanitarian Help" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769734099/young-peeple-red-packing-cardboards-with-humanitarian-help_uptphu.jpg" />
+                            <ImageSkeleton className="w-full h-full">
+                              <img alt="Young People Packing Humanitarian Help" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769734099/young-peeple-red-packing-cardboards-with-humanitarian-help_uptphu.jpg" />
+                            </ImageSkeleton>
                           </div>
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -254,7 +286,9 @@ export default function Work() {
                   {/* Photo 1 */}
                   <div className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-3 border-white/10 transition-all duration-300 p-5 cursor-pointer hover:border-white/30">
                     <div className="relative aspect-square w-full overflow-hidden bg-gray-900 rounded-lg">
-                      <img alt="Colorful Kingfisher Bird" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/colorful-kingfisher-bird-sitting-tree-branch_xacat9.jpg" />
+                      <ImageSkeleton className="w-full h-full">
+                        <img alt="Colorful Kingfisher Bird" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/colorful-kingfisher-bird-sitting-tree-branch_xacat9.jpg" />
+                      </ImageSkeleton>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
                         <div className="flex justify-between items-start">
                           <div>
@@ -275,7 +309,9 @@ export default function Work() {
                   {/* Photo 2 */}
                   <div className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-3 border-white/10 transition-all duration-300 p-5 cursor-pointer hover:border-white/30">
                     <div className="relative aspect-square w-full overflow-hidden bg-gray-900 rounded-lg">
-                      <img alt="Beautiful Blue Kingfisher" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-blue-kingfisher-bird-branch_s57u55.jpg" />
+                      <ImageSkeleton className="w-full h-full">
+                        <img alt="Beautiful Blue Kingfisher" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-blue-kingfisher-bird-branch_s57u55.jpg" />
+                      </ImageSkeleton>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
                         <div className="flex justify-between items-start">
                           <div>
@@ -296,7 +332,9 @@ export default function Work() {
                   {/* Photo 3 */}
                   <div className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-3 border-white/10 transition-all duration-300 p-5 cursor-pointer hover:border-white/30">
                     <div className="relative aspect-square w-full overflow-hidden bg-gray-900 rounded-lg">
-                      <img alt="European Bee-Eater" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-shot-european-bee-eater-bird-perched-log-forest_ztagjt.jpg" />
+                      <ImageSkeleton className="w-full h-full">
+                        <img alt="European Bee-Eater" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-shot-european-bee-eater-bird-perched-log-forest_ztagjt.jpg" />
+                      </ImageSkeleton>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
                         <div className="flex justify-between items-start">
                           <div>
@@ -317,7 +355,9 @@ export default function Work() {
                   {/* Photo 4 */}
                   <div className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-3 border-white/10 transition-all duration-300 p-5 cursor-pointer hover:border-white/30">
                     <div className="relative aspect-square w-full overflow-hidden bg-gray-900 rounded-lg">
-                      <img alt="Professional Portrait" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                      <ImageSkeleton className="w-full h-full">
+                        <img alt="Professional Portrait" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" />
+                      </ImageSkeleton>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
                         <div className="flex justify-between items-start">
                           <div>
@@ -338,7 +378,9 @@ export default function Work() {
                   {/* Photo 5 */}
                   <div className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-3 border-white/10 transition-all duration-300 p-5 cursor-pointer hover:border-white/30">
                     <div className="relative aspect-square w-full overflow-hidden bg-gray-900 rounded-lg">
-                      <img alt="Wedding Walk in Nature" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/beautiful-wedding-walk-nature-ukraine-sumy_gi4ccv.jpg" />
+                      <ImageSkeleton className="w-full h-full">
+                        <img alt="Wedding Walk in Nature" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/beautiful-wedding-walk-nature-ukraine-sumy_gi4ccv.jpg" />
+                      </ImageSkeleton>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
                         <div className="flex justify-between items-start">
                           <div>
@@ -359,7 +401,9 @@ export default function Work() {
                   {/* Photo 6 */}
                   <div className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-3 border-white/10 transition-all duration-300 p-5 cursor-pointer hover:border-white/30">
                     <div className="relative aspect-square w-full overflow-hidden bg-gray-900 rounded-lg">
-                      <img alt="Just Married Couple" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725089/just-married-couple-having-fun-together_tuc5yy.jpg" />
+                      <ImageSkeleton className="w-full h-full">
+                        <img alt="Just Married Couple" loading="lazy" decoding="async" className="transition-all duration-500 group-hover:scale-110 object-cover w-full h-full" src="https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725089/just-married-couple-having-fun-together_tuc5yy.jpg" />
+                      </ImageSkeleton>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
                         <div className="flex justify-between items-start">
                           <div>

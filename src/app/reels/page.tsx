@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Container from '@/components/shared/Container'
+import ImageSkeleton from '@/components/shared/ImageSkeleton'
 
 const reels = [
   {
@@ -74,11 +76,14 @@ export default function Reels() {
                 style={{ animationDelay: `${idx * 0.1}s` }}
                 onClick={() => setSelectedReel(reel.id)}
               >
-                <video
-                  src={reel.src}
-                  className="w-full h-full object-cover"
-                  poster="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=600&fit=crop"
-                />
+                <ImageSkeleton className="w-full h-full">
+                  <video
+                    src={reel.src}
+                    className="w-full h-full object-cover"
+                    poster="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=600&fit=crop"
+                    onLoadedMetadata={() => {}}
+                  />
+                </ImageSkeleton>
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-center justify-center">
                   <div className="bg-white/90 group-hover:bg-white transition-colors rounded-full p-4">
                     <svg

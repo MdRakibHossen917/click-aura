@@ -2,7 +2,14 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
+import ImageSkeleton from '@/components/shared/ImageSkeleton'
+import shoeImage1 from '@/assets/shoeImages/denis-marosan-q35zYDIJSjo-unsplash.jpg'
+import shoeImage2 from '@/assets/shoeImages/huyen-nguy-IjzhMi4Cw3w-unsplash.jpg'
+import shoeImage3 from '@/assets/shoeImages/maksim-larin-ezdrvzA1hZw-unsplash.jpg'
+import shoeImage4 from '@/assets/shoeImages/richard-ciraulo-BlI3VVVfP3Y-unsplash.jpg'
+import shoeImage5 from '@/assets/shoeImages/ryan-waring-164_6wVEHfI-unsplash.jpg'
 
 // Counter component for animated counting
 function Counter({ end }: { end: number }) {
@@ -55,7 +62,7 @@ function Counter({ end }: { end: number }) {
 export default function Home() {
   const [activeTab, setActiveTab] = useState('Albums')
   const [packageTab, setPackageTab] = useState('Packages')
-  const [customCategory, setCustomCategory] = useState('Commercial')
+  const [customCategory, setCustomCategory] = useState('Wedding')
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [drawerY, setDrawerY] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -250,6 +257,13 @@ export default function Home() {
 
           </div>
         </div>
+        
+        {/* Scroll to Explore */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+          <div className="text-center text-white/20 font-satoshi-light uppercase text-xs md:text-lg leading-7 tracking-wider transition-all duration-300 opacity-100 translate-y-0">
+            SCROLL TO EXPLORE
+          </div>
+        </div>
       </section>
 
       {/* Section 2 - About Section with Image Stack */}
@@ -277,47 +291,77 @@ export default function Home() {
 
                 {/* Image 4 - Wide Bottom */}
                 <div className="col-span-2 ">
-                  <img
-                    src={`https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=600&auto=format&fit=crop`}
-                    alt="Photo 4"
-                    className="w-full h-32 md:h-40 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  />
+                  <ImageSkeleton className="w-full h-32 md:h-40 rounded-lg">
+                    <Image
+                      src={shoeImage1}
+                      alt="Fashion Shoes"
+                      width={600}
+                      height={400}
+                      quality={95}
+                      priority
+                      className="w-full h-32 md:h-40 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                    />
+                  </ImageSkeleton>
                 </div>
 
                 {/* Image 5 - Regular */}
                 <div className="col-span-1 -mt-8">
-                  <img
-                    src={`https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=400&auto=format&fit=crop`}
-                    alt="Photo 5"
-                    className="w-full h-32 md:h-45 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  />
+                  <ImageSkeleton className="w-full h-32 md:h-45 rounded-lg">
+                    <Image
+                      src={shoeImage2}
+                      alt="Stylish Footwear"
+                      width={400}
+                      height={300}
+                      quality={95}
+                      priority
+                      className="w-full h-32 md:h-45 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                    />
+                  </ImageSkeleton>
                 </div>
 
                 {/* Image 6 - Tall Right */}
                 <div className="col-span-1 row-span-2 ">
-                  <img
-                    src={`https://images.unsplash.com/photo-1570464197285-9949814674a7?q=80&w=400&auto=format&fit=crop`}
-                    alt="Photo 6"
-                    className="w-full h-64 md:h-85 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  />
+                  <ImageSkeleton className="w-full h-64 md:h-85 rounded-lg">
+                    <Image
+                      src={shoeImage3}
+                      alt="Premium Shoes"
+                      width={400}
+                      height={600}
+                      quality={95}
+                      priority
+                      className="w-full h-64 md:h-85 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                    />
+                  </ImageSkeleton>
                 </div>
 
                 {/* Image 7 - Regular */}
                 <div className="col-span-1 -mt-2">
-                  <img
-                    src={`https://images.unsplash.com/photo-1578608712688-36b5be8823dc?q=80&w=400&auto=format&fit=crop`}
-                    alt="Photo 7"
-                    className="w-full h-32 md:h-56 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  />
+                  <ImageSkeleton className="w-full h-32 md:h-56 rounded-lg">
+                    <Image
+                      src={shoeImage4}
+                      alt="Elegant Fashion"
+                      width={400}
+                      height={500}
+                      quality={95}
+                      priority
+                      className="w-full h-32 md:h-56 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                    />
+                  </ImageSkeleton>
                 </div>
 
                 {/* Image 8 - Regular */}
                 <div className="col-span-1 -mt-5">
-                 <img
-                    src={`https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=400&auto=format&fit=crop`}
-                    alt="Photo 3"
-                    className="w-full h-32 md:h-40 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  />
+                  <ImageSkeleton className="w-full h-32 md:h-40 rounded-lg">
+                    <Image
+                      src={shoeImage5}
+                      alt="Lifestyle Photography"
+                      width={400}
+                      height={400}
+                      quality={95}
+                      priority
+                      className="w-full h-32 md:h-40 object-cover rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                    />
+                  </ImageSkeleton>
                 </div>
               </div>
             </div>
@@ -1021,7 +1065,7 @@ export default function Home() {
 
  {/* Section 5 - My Client */}
      
-<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full py-12 md:py-16 lg:py-20">
+<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full  ">
   <div className="container mx-auto px-4 md:px-6   w-full">
     
     {/* Heading */}

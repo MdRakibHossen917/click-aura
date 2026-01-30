@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Container from '@/components/shared/Container'
+import ImageSkeleton from '@/components/shared/ImageSkeleton'
 
 export default function About() {
   const workImages = [
@@ -236,16 +237,18 @@ export default function About() {
               <div className="image-marquee-track image-marquee-left">
                 {row1Images.map((item, idx) => (
                   <div key={`row1-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      width={256}
-                      height={160}
-                      sizes="(min-width: 768px) 256px, 224px"
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      style={{ contain: 'content' }}
-                    />
+                    <ImageSkeleton className="h-full w-full rounded-xl">
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        width={256}
+                        height={160}
+                        sizes="(min-width: 768px) 256px, 224px"
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        style={{ contain: 'content' }}
+                      />
+                    </ImageSkeleton>
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
@@ -258,16 +261,18 @@ export default function About() {
               <div className="image-marquee-track image-marquee-right">
                 {row2Images.map((item, idx) => (
                   <div key={`row2-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      width={256}
-                      height={160}
-                      sizes="(min-width: 768px) 256px, 224px"
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      style={{ contain: 'content' }}
-                    />
+                    <ImageSkeleton className="h-full w-full rounded-xl">
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        width={256}
+                        height={160}
+                        sizes="(min-width: 768px) 256px, 224px"
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        style={{ contain: 'content' }}
+                      />
+                    </ImageSkeleton>
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
@@ -280,16 +285,18 @@ export default function About() {
               <div className="image-marquee-track image-marquee-left">
                 {row3Images.map((item, idx) => (
                   <div key={`row3-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      width={256}
-                      height={160}
-                      sizes="(min-width: 768px) 256px, 224px"
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      style={{ contain: 'content' }}
-                    />
+                    <ImageSkeleton className="h-full w-full rounded-xl">
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        width={256}
+                        height={160}
+                        sizes="(min-width: 768px) 256px, 224px"
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        style={{ contain: 'content' }}
+                      />
+                    </ImageSkeleton>
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
