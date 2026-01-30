@@ -27,6 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <style>{`
+          html {
+            background: #0a0a0a;
+            color: #ededed;
+          }
+          html.light {
+            background: #ffffff;
+            color: #171717;
+          }
+        `}</style>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -36,7 +46,9 @@ export default function RootLayout({
                     (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
                   if (isDark) {
                     document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
                   } else {
+                    document.documentElement.classList.add('light');
                     document.documentElement.classList.remove('dark');
                   }
                 } catch (e) {}
