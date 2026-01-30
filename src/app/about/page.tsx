@@ -5,6 +5,73 @@ import Image from 'next/image'
 import Container from '@/components/shared/Container'
 
 export default function About() {
+  const workImages = [
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725088/beautiful-wedding-walk-nature-ukraine-sumy_gi4ccv.jpg',
+      title: 'Wedding Couple Walking in Nature',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769725089/just-married-couple-having-fun-together_tuc5yy.jpg',
+      title: 'Just Married Couple',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1751531746/samples/balloons.jpg',
+      title: 'Wedding Celebration',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/colorful-kingfisher-bird-sitting-tree-branch_xacat9.jpg',
+      title: 'Colorful Kingfisher Bird',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-blue-kingfisher-bird-branch_s57u55.jpg',
+      title: 'Beautiful Blue Kingfisher',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769730756/beautiful-shot-european-bee-eater-bird-perched-log-forest_ztagjt.jpg',
+      title: 'European Bee-Eater',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop',
+      title: 'Professional Portrait',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/young-woman-farmer-looking-after-cows-cowshed_ylwodo.jpg',
+      title: 'Woman Farmer with Cows',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/view-woman-working-animal-farming-field-celebrate-labour-day-women_1_ffacyb.jpg',
+      title: 'Woman Animal Farming',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/front-view-smiley-woman-holding-goat_sxivfd.jpg',
+      title: 'Woman with Goat',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733956/basketball-game_pffvah.jpg',
+      title: 'Basketball Game',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733956/smiley-friends-with-books-coffee-outdoors_le2hly.jpg',
+      title: 'Friends with Coffee',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733957/universityCafeteria_kmkmlb.jpg',
+      title: 'University Cafeteria',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769733955/rsz_young-woman-posing-her-colorful-painting_qmvlng.jpg',
+      title: 'Woman with Colorful Painting',
+    },
+    {
+      src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769734099/young-peeple-red-packing-cardboards-with-humanitarian-help_uptphu.jpg',
+      title: 'Young People Packing Humanitarian Help',
+    },
+  ]
+
+  const row1Images = [...workImages.slice(0, 6), ...workImages.slice(0, 6)]
+  const row2Images = [...workImages.slice(6, 12), ...workImages.slice(6, 12)]
+  const row3Images = [...workImages.slice(12), ...workImages.slice(12)]
+
   return (
     <div className="relative w-full min-h-screen bg-black" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <style jsx>{`
@@ -167,16 +234,18 @@ export default function About() {
           <div className="space-y-6">
             <div className="relative w-full overflow-hidden hidden md:block">
               <div className="image-marquee-track image-marquee-left">
-                {[
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735851/close-up-cameraman-doing-his-job_lmzilo.jpg', title: 'Cameraman Close-up' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735846/product-photographer-with-camera-studio_bywirl.jpg', title: 'Product Photographer' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735848/hand-holding-photo-camera_kly1ei.jpg', title: 'Camera in Hand' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735851/close-up-cameraman-doing-his-job_lmzilo.jpg', title: 'Cameraman Close-up' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735846/product-photographer-with-camera-studio_bywirl.jpg', title: 'Product Photographer' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735848/hand-holding-photo-camera_kly1ei.jpg', title: 'Camera in Hand' },
-                ].map((item, idx) => (
+                {row1Images.map((item, idx) => (
                   <div key={`row1-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
-                    <img src={item.src} alt={item.title} loading="lazy" decoding="async" width={256} height={160} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ contain: 'content' }} />
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      width={256}
+                      height={160}
+                      sizes="(min-width: 768px) 256px, 224px"
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ contain: 'content' }}
+                    />
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
@@ -187,16 +256,18 @@ export default function About() {
 
             <div className="relative w-full overflow-hidden">
               <div className="image-marquee-track image-marquee-right">
-                {[
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735815/man-filming-with-professional-camera_a7ofrn.jpg', title: 'On-set Filming' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735813/hands-with-movie-slate_i4trci.jpg', title: 'Movie Slate' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735812/man-filming-with-professional-camera_1_qgk1wt.jpg', title: 'Cinema Rig' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735815/man-filming-with-professional-camera_a7ofrn.jpg', title: 'On-set Filming' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735813/hands-with-movie-slate_i4trci.jpg', title: 'Movie Slate' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735812/man-filming-with-professional-camera_1_qgk1wt.jpg', title: 'Cinema Rig' },
-                ].map((item, idx) => (
+                {row2Images.map((item, idx) => (
                   <div key={`row2-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
-                    <img src={item.src} alt={item.title} loading="lazy" decoding="async" width={256} height={160} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ contain: 'content' }} />
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      width={256}
+                      height={160}
+                      sizes="(min-width: 768px) 256px, 224px"
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ contain: 'content' }}
+                    />
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
@@ -207,14 +278,18 @@ export default function About() {
 
             <div className="relative w-full overflow-hidden">
               <div className="image-marquee-track image-marquee-left">
-                {[
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735811/people-working-together-new-movie_mc2mfy.jpg', title: 'Crew Collaboration' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769734099/young-peeple-red-packing-cardboards-with-humanitarian-help_uptphu.jpg', title: 'Production Support' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735811/people-working-together-new-movie_mc2mfy.jpg', title: 'Crew Collaboration' },
-                  { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769734099/young-peeple-red-packing-cardboards-with-humanitarian-help_uptphu.jpg', title: 'Production Support' },
-                ].map((item, idx) => (
+                {row3Images.map((item, idx) => (
                   <div key={`row3-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
-                    <img src={item.src} alt={item.title} loading="lazy" decoding="async" width={256} height={160} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ contain: 'content' }} />
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      width={256}
+                      height={160}
+                      sizes="(min-width: 768px) 256px, 224px"
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ contain: 'content' }}
+                    />
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
