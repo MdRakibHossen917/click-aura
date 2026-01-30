@@ -423,25 +423,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Find Us */}
-      <Container className="relative z-20 pb-20">
-        <div className="text-center mb-10 space-y-3">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Find Us</h2>
-          <p className="text-gray-400 text-sm md:text-base">Visit our studio in Bangladesh</p>
-        </div>
-        <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40">
-          <div className="aspect-[16/9] w-full">
-            <iframe
-              title="Bengal Art Location"
-              src="https://maps.google.com/maps?q=23.9080057,90.4011613&z=16&output=embed"
-              className="h-full w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      </Container>
+      
     </div>
   )
 }
