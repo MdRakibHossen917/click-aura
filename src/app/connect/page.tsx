@@ -65,7 +65,7 @@ export default function Connect() {
       <Container className="relative z-20 pt-32 pb-16">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fade-in-up">
-            Let&apos;s Connect
+            Let&apos;s Start New Project
           </h1>
           <p className="text-gray-400 text-base md:text-lg max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             Ready to create something amazing? Get in touch and let&apos;s discuss your project.

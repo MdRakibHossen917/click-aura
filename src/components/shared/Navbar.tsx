@@ -78,7 +78,7 @@ const Navbar = () => {
       <nav className="w-11/12 mx-auto flex justify-between items-center py-4 md:py-6 relative h-20 md:h-24">
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center h-full">
-          <div className="w-24 md:w-34 h-auto">
+          <div className="w-28 md:w-34 h-auto">
             <Image
               src="/Click Aura-logo-transparent.png"
               alt="Click Aura Logo"
@@ -113,21 +113,21 @@ const Navbar = () => {
                     ))}
                   </div>
                   {/* Social icons */}
-                  <div className="flex flex-wrap gap-6 mt-auto items-center text-zinc-400">
+                  <div className="flex flex-wrap gap-6 mt-auto items-center text-zinc-400 md:gap-8 pt-6 border-t border-zinc-800">
                     <a href="https://www.facebook.com/md.rakib.hossen.41751" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                      <Facebook size={24} />
+                      <Facebook size={28} />
                     </a>
                     <a href="https://www.linkedin.com/in/rakibhossen917/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                      <Linkedin size={24} />
+                      <Linkedin size={28} />
                     </a>
                     <a href="https://github.com/MdRakibHossen917" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                      <Github size={24} />
+                      <Github size={28} />
                     </a>
                     <a href="#" className="hover:text-white transition-colors">
-                      <Instagram size={24} />
+                      <Instagram size={28} />
                     </a>
                     <a href="#" className="hover:text-white transition-colors">
-                      <Twitter size={24} />
+                      <Twitter size={28} />
                     </a>
                   </div>
                 </div>

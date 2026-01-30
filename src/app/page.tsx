@@ -1774,7 +1774,7 @@ export default function Home() {
 </section>
 
     {/* Section 7 - Let's Connect CTA */}
-    <section className="w-full min-h-[85vh] flex flex-col justify-between py-12 px-4 md:px-10 relative overflow-hidden bg-black">
+    <section className="w-full min-h-[85vh] flex flex-col justify-between py-12 px-4 md:px-10 relative overflow-hidden bg-gradient-to-br from-[#be9b58] via-[#a38548] to-[#8c7335]">
       <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none mix-blend-overlay"></div>
       <div className="absolute inset-0 opacity-5 pointer-events-none select-none flex items-center justify-center overflow-hidden">
         <div className="text-[15vw] md:text-[20vw] font-black uppercase leading-none text-black whitespace-nowrap" style={{ transform: 'translateY(-31.7832px)' }}>Click Arora</div>
