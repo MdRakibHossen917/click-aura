@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Container from '@/components/shared/Container'
 
 export default function About() {
@@ -61,17 +62,31 @@ export default function About() {
           display: flex;
           width: max-content;
           animation: marquee 18s linear infinite;
+          will-change: transform;
+          transform: translate3d(0, 0, 0);
         }
         .image-marquee-track {
           display: flex;
           width: max-content;
           gap: 16px;
+          will-change: transform;
+          transform: translate3d(0, 0, 0);
+          contain: layout style paint;
         }
         .image-marquee-left {
           animation: marquee-left 22s linear infinite;
+          transform: translate3d(0, 0, 0);
         }
         .image-marquee-right {
           animation: marquee-right 22s linear infinite;
+          transform: translate3d(0, 0, 0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-track,
+          .image-marquee-left,
+          .image-marquee-right {
+            animation: none;
+          }
         }
       `}</style>
 
@@ -160,8 +175,8 @@ export default function About() {
                   { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735846/product-photographer-with-camera-studio_bywirl.jpg', title: 'Product Photographer' },
                   { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735848/hand-holding-photo-camera_kly1ei.jpg', title: 'Camera in Hand' },
                 ].map((item, idx) => (
-                  <div key={`row1-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10">
-                    <img src={item.src} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div key={`row1-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
+                    <img src={item.src} alt={item.title} loading="lazy" decoding="async" width={256} height={160} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ contain: 'content' }} />
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
@@ -180,8 +195,8 @@ export default function About() {
                   { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735813/hands-with-movie-slate_i4trci.jpg', title: 'Movie Slate' },
                   { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735812/man-filming-with-professional-camera_1_qgk1wt.jpg', title: 'Cinema Rig' },
                 ].map((item, idx) => (
-                  <div key={`row2-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10">
-                    <img src={item.src} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div key={`row2-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
+                    <img src={item.src} alt={item.title} loading="lazy" decoding="async" width={256} height={160} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ contain: 'content' }} />
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>
@@ -198,8 +213,8 @@ export default function About() {
                   { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769735811/people-working-together-new-movie_mc2mfy.jpg', title: 'Crew Collaboration' },
                   { src: 'https://res.cloudinary.com/dk8syjt2z/image/upload/v1769734099/young-peeple-red-packing-cardboards-with-humanitarian-help_uptphu.jpg', title: 'Production Support' },
                 ].map((item, idx) => (
-                  <div key={`row3-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10">
-                    <img src={item.src} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div key={`row3-${idx}`} className="group relative h-36 w-56 md:h-40 md:w-64 overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
+                    <img src={item.src} alt={item.title} loading="lazy" decoding="async" width={256} height={160} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ contain: 'content' }} />
                     <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
                       <span className="text-white text-sm font-semibold">{item.title}</span>
                     </div>

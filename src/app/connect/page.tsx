@@ -86,10 +86,10 @@ export default function Connect() {
                   <div>
                     <h3 className="text-white font-bold mb-2">Email</h3>
                     <a
-                      href="mailto:info@bengalart.com"
+                      href="mailto:info@clickaura.com"
                       className="text-gray-400 hover:text-white transition-colors"
                     >
-                      info@bengalart.com
+                      info@clickaura.com
                     </a>
                   </div>
                 </div>
