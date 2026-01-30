@@ -267,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* Section 2 - About Section with Image Stack */}
-      <section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen h-auto lg:h-screen flex items-center w-full py-12 md:py-16 lg:py-20">
+      <section className="relative z-30 bg-black min-h-screen h-auto lg:h-screen flex items-center w-full py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center w-full">
               
@@ -411,7 +411,7 @@ export default function Home() {
         </div>
       </section>
       {/* Section 3 - Creative Portfolio */}
-      <section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full py-12 md:py-16 lg:py-20">
+      <section className="relative z-30 bg-black min-h-screen w-full py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
           
           {/* Heading */}
@@ -913,8 +913,8 @@ export default function Home() {
         </div>
       </section>
  {/* Section 4 - Stats */}
-     
-<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full py-12 md:py-16 lg:py-20">
+
+<section className="relative z-30 bg-black min-h-screen w-full py-12 md:py-16 lg:py-20">
   <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
     
     
@@ -1064,8 +1064,8 @@ export default function Home() {
 </section>
 
  {/* Section 5 - My Client */}
-     
-<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full  ">
+
+<section className="relative z-30 bg-black min-h-screen w-full  ">
   <div className="container mx-auto px-4 md:px-6   w-full">
     
     {/* Heading */}
@@ -1177,7 +1177,7 @@ export default function Home() {
 </section>
 
 {/* Section 6 - Packages for Your Special Day */}
-<section className="relative z-30 bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen w-full py-12 md:py-16 lg:py-20">
+<section className="relative z-30 bg-black min-h-screen w-full py-12 md:py-16 lg:py-20">
   <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
     
     {/* Heading */}
@@ -1774,7 +1774,7 @@ export default function Home() {
 </section>
 
     {/* Section 7 - Let's Connect CTA */}
-    <section className="w-full min-h-[85vh] flex flex-col justify-between py-12 px-4 md:px-10 relative overflow-hidden bg-gradient-to-br from-[#be9b58] via-[#a38548] to-[#8c7335]">
+    <section className="w-full min-h-[85vh] flex flex-col justify-between py-12 px-4 md:px-10 relative overflow-hidden bg-black">
       <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none mix-blend-overlay"></div>
       <div className="absolute inset-0 opacity-5 pointer-events-none select-none flex items-center justify-center overflow-hidden">
         <div className="text-[15vw] md:text-[20vw] font-black uppercase leading-none text-black whitespace-nowrap" style={{ transform: 'translateY(-31.7832px)' }}>Click Arora</div>
